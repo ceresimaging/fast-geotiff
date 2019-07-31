@@ -57,8 +57,8 @@ export default async function readGeoTIFF (img, arrayBuffer) {
       partition(strips, numPartitions)
       .map(rawStripArrays => decoder.decodeAll
         ? decoder.decodeAll(img.fileDirectory, rawStripArrays)
-        : rawStripArrays.map(rawStripArray =>
-              decoder.decode(img.fileDirectory, rawStripArray)
+        : Promise.all(
+            rawStripArrays.map((rawStripArray) => decoder.decode(img.fileDirectory, rawStripArray))
           )
       )
     )
