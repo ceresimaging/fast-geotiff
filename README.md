@@ -12,7 +12,7 @@ of GeoTIFF.js.
 Uncompressed GeoTIFFs are 'read' using a direct mmap. LZW compressed GeoTIFFs
 are decoded using 'fast-lzw' (https://github.com/ceresimaging/fast-lzw), which uses web assembly for performance.
 
-```
+```javascript
 import { readRasterFromURL } from 'fast-geotiff'
 
 // Load the ImageData from a URL (an arraybuffer version also exists)
