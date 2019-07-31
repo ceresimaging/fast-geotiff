@@ -6,11 +6,10 @@ async function arrayBufferToGeoTiffJSImage (arrayBuffer) {
   return await tiff.getImage()
 }
 
-async function readGeoTIFF(arrayBuffer) {
-  const image = await arrayBufferToGeoTiffJSImage(arrayBuffer)
-  const rasters = await image.readRasters({ interleave: true })
+async function readGeoTIFF(img, arrayBuffer) {
+  const rasters = await img.readRasters({ interleave: true })
   const rgba = uint16ToUint8(rasters)
-  return new ImageData(rgba, image.getWidth(), image.getHeight())
+  return new ImageData(rgba, img.getWidth(), img.getHeight())
 }
 
 export { arrayBufferToGeoTiffJSImage, readGeoTIFF }
