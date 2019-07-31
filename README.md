@@ -4,6 +4,8 @@ optimized for high performance raster reads of commonly formatted GeoTIFFs.
 For many common non-tiled, planar, RAW or LZW compressed GeoTIFFs, FastGeoTIFF
 can decode an ImageData of the rasters 5-10x faster than GeoTIFF.js.
 
+E.g. a 150MB LZW compressed GeoTIFF can be decoded to ImageData in ~1s.
+
 If FastGeoTIFF can't read the file, it will fall back to the (bundled) copy
 of GeoTIFF.js.
 
