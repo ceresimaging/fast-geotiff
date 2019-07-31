@@ -1,0 +1,25 @@
+{
+  "name": "fast-geotiff",
+  "version": "1.0.0",
+  "description": "Layer above GeoTIFF.js to optimize loads in common cases (5x+ faster on many GeoTIFFS)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ceresimaging/fast-geotiff.git"
+  },
+  "keywords": [
+    "fast",
+    "geotiff",
+    "geotiff.js",
+    "performance"
+  ],
+  "author": "Seth Nickell <seth@ceresimaging.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ceresimaging/fast-geotiff/issues"
+  },
+  "homepage": "https://github.com/ceresimaging/fast-geotiff#readme"
+}
