@@ -2,9 +2,11 @@
   "name": "fast-geotiff",
   "version": "1.0.0",
   "description": "Layer above GeoTIFF.js to optimize loads in common cases (5x+ faster on many GeoTIFFS)",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "module": "geotiff/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "webpack --watch",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -14,12 +16,25 @@
     "fast",
     "geotiff",
     "geotiff.js",
-    "performance"
+    "performance",
+    "WASM"
   ],
   "author": "Seth Nickell <seth@ceresimaging.net>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ceresimaging/fast-geotiff/issues"
   },
-  "homepage": "https://github.com/ceresimaging/fast-geotiff#readme"
+  "homepage": "https://github.com/ceresimaging/fast-geotiff#readme",
+  "dependencies": {
+    "fast-lzw": "file:../fast-lzw",
+    "geotiff": "^1.0.0-beta.6",
+    "zip-array": "^1.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.38.0",
+    "webpack-cli": "^3.3.6"
+  }
 }
