@@ -21,7 +21,5 @@ export default async function readGeoTiff (img, arrayBuffer) {
     new Uint16Array(arrayBuffer)
   )
 
-  console.log(rgba.length)
-
   return new ImageData(rgba, img.getWidth(), img.getHeight())
 }
