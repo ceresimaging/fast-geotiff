@@ -1,9 +1,8 @@
 {
   "name": "fast-geotiff",
-  "version": "1.0.0",
-  "description": "Layer above GeoTIFF.js to optimize loads in common cases (5x+ faster on many GeoTIFFS)",
+  "version": "1.0.0-alpha.1",
+  "description": "Optimized raster reads for GeoTIFF.js, 5-10x faster on many common GeoTIFFs",
   "main": "dist/index.js",
-  "module": "geotiff/index.js",
   "scripts": {
     "watch": "webpack --watch",
     "build": "webpack"
@@ -27,7 +26,7 @@
   "homepage": "https://github.com/ceresimaging/fast-geotiff#readme",
   "dependencies": {
     "array-flatten": "^2.1.2",
-    "fast-lzw": "file:../fast-lzw",
+    "fast-lzw": "^1.0.0-alpha.2",
     "pop-zip": "^1.0.0"
   },
   "devDependencies": {
@@ -38,7 +37,7 @@
     "webpack": "^4.38.0",
     "webpack-cli": "^3.3.6"
   },
-  "peerDependencies": {
-    "geotiff": "^1.0.0-beta.6"
-  }
+  "files": [
+    "dist/"
+  ]
 }
