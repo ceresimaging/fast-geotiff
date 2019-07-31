@@ -39,11 +39,22 @@ export default async function readGeoTIFF (img, arrayBuffer) {
     }  
   }
 
+  // OK, this is messed up, but if we don't do this, we don't get
+  // complete strips, and LZW decode fails (???)
+  // You can see the image corruption decrease as we read more and
+  // more data. This is especially pronounced in the 'transparent'
+  // parts of images, which should compress more, which makes me
+  // wonder if we're misunderstanding how to read the strips?
+  const MAGIC_FACTOR_READ_N_EXTRA_BYTES_FOR_EACH_STRIP = 16384
+
   const strips = zip(
     img.fileDirectory.StripOffsets,
     img.fileDirectory.StripByteCounts
   ).map(([ byteOffset, numBytes ]) => 
-    rawArray.subarray(byteOffset, byteOffset + numBytes)
+    rawArray.subarray(
+      byteOffset,
+      byteOffset + MAGIC_FACTOR_READ_N_EXTRA_BYTES_FOR_EACH_STRIP + numBytes
+    )
   )
 
   const numPartitions = decoder.numWorkers ? decoder.numWorkers() : 1
