@@ -1,7 +1,7 @@
 import { LZW } from 'fast-lzw'
 import { getDecoder as getDecoderGeotiffJS } from 'geotiff/dist/compression'
 import BaseDecoder from 'geotiff/dist/compression/basedecoder'
-import YieldExecutionEvery from '../yield-execution-every'
+import YieldExecutionEvery from './yield-execution-every'
 
 const WORKER_POOL_SIZE = 4
 const YIELD_EXECUTION_EVERY_MS = 100

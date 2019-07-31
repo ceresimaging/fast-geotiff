@@ -23,5 +23,11 @@ module.exports = {
         }
       }
     ]
+  },
+  resolve: {
+    alias: {
+      // Necessary for GeoTIFF.js :-/
+      'babel-runtime': '@babel/runtime',
+    }
   }
 }
