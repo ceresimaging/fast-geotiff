@@ -10,16 +10,14 @@ export default async function readGeoTiff (img, arrayBuffer) {
   }
 
   const stripOffsets = img.fileDirectory.StripOffsets
-  arrayBuffer = arrayBuffer.slice(
+  const uint16Array = new Uint16Array(arrayBuffer,
     stripOffsets[0],
     // FIXME: weird, the file is actually LONGER than the byte counts here suggest
     // and if you don't read the whole thing... it doesn't work.... huh
     // stripOffsets[stripOffsets.length - 1] + img.fileDirectory.StripByteCounts[stripOffsets.length - 1]
   )
 
-  const rgba = uint16ToUint8(
-    new Uint16Array(arrayBuffer)
-  )
+  const rgba = uint16ToUint8(uint16Array)
 
   return new ImageData(rgba, img.getWidth(), img.getHeight())
 }
