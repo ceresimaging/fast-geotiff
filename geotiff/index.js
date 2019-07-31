@@ -8,7 +8,7 @@ function decode(img, arrayBuffer) {
   const format = img.fileDirectory.SampleFormat ? Math.max(...img.fileDirectory.SampleFormat) : 1
 
   if (img.planarConfiguration && !img.isTiled && img.getTileHeight() == 1 && format == 1) {
-    if (img.Compression == 1) {
+    if (img.fileDirectory.Compression == 1) {
       // RAW, not compressed, use MMAP for insane speed
       return readGeoTiffMMAP(img, arrayBuffer)
     } else {
