@@ -4,49 +4,46 @@ import { readGeoTIFF as readGeoTIFFJsLib, arrayBufferToGeoTiffJSImage } from './
 
 const PROFILE=true
 
-function decode(img, arrayBuffer, url) {
+function decode(img, arrayBuffer) {
   const format = img.fileDirectory.SampleFormat ? Math.max(...img.fileDirectory.SampleFormat) : 1
 
   if (img.planarConfiguration && !img.isTiled && img.getTileHeight() == 1 && format == 1) {
     if (img.Compression == 1) {
       // RAW, not compressed, use MMAP for insane speed
-      console.log(`Reading ${url} with MMAP`)
       return readGeoTiffMMAP(img, arrayBuffer)
     } else {
       // Its all in a direct read order, but compressed
-      console.log(`Reading ${url} with Decode`)
       return readGeoTIFFDecode(img, arrayBuffer)
     }
   } else {
     // Its something else, let GeoTiff.js deal with it
-    console.warn(`Reading ${url} with GeoTIFF.js`)
     return readGeoTIFFJsLib(img)
   }
 }
 
-export default async function loadGeotiff(url) {
-  function time(s) {
-    if (PROFILE)
-      console.time(s + url)
-  }
-  
-  function timeEnd(s) {
-    if (PROFILE)
-      console.timeEnd(s + url)
-  }
-
+async function readRasterFromURL(url) {
   const response = await fetch(url)
   const arrayBuffer = await response.arrayBuffer()
-
-  const img = await arrayBufferToGeoTiffJSImage(arrayBuffer)
-
-  time('decode')
-  const imageData = await decode(img, arrayBuffer, url)
-  timeEnd('decode')
-
-  const canvas = new OffscreenCanvas(imageData.width, imageData.height)
-  canvas.getContext("2d")
-    .putImageData(imageData, 0, 0)
-
-  return canvas
+  return readRaster(arrayBuffer)
 }
+
+function time(s) {
+  if (PROFILE)
+    console.time(s)
+}
+
+function timeEnd(s) {
+  if (PROFILE)
+    console.timeEnd(s)
+}
+
+async function readRaster(arrayBuffer) {
+  time('readRaster')
+  const img = await arrayBufferToGeoTiffJSImage(arrayBuffer)
+  const imageData = await decode(img, arrayBuffer)
+  timeEnd('readRaster')
+
+  return imageData
+}
+
+export { readRaster, readRasterFromURL }
