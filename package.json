@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/ceresimaging/fast-geotiff#readme",
   "dependencies": {
-    "fast-lzw": "file:../fast-lzw",
+    "fast-lzw": "https://github.com/ceresimaging/fast-lzw",
     "geotiff": "^1.0.0-beta.6",
     "zip-array": "^1.0.1"
   },
