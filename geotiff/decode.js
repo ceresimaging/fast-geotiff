@@ -1,5 +1,6 @@
 import { arrayTypeFor, getDecoder, uint16ToUint8, range } from './shared'
 import zip from 'pop-zip/zip'
+import flatten from 'array-flatten'
 
 const partition = (arr, numPartitions) => {
   const len = arr.length
@@ -11,10 +12,6 @@ const partition = (arr, numPartitions) => {
     return arr.slice(start, end)
   })
 }
-
-const flatten = listOfLists => listOfLists.reduce(
-  (all, list) => [...all, ...list]
-)
 
 export default async function readGeoTIFF (img, arrayBuffer) {
   const format = img.fileDirectory.SampleFormat ? Math.max(...img.fileDirectory.SampleFormat) : 1
