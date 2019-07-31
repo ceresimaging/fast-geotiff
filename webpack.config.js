@@ -2,11 +2,12 @@ const path = require('path')
 
 module.exports = {
   entry: './geotiff/index.js',
-
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
-    libraryTarget: 'commonjs2'
+    libraryTarget: "umd",
+    umdNamedDefine: true,
+    library: 'fast-geotiff'
   },
   mode: "production",
   module: {
@@ -24,10 +25,8 @@ module.exports = {
       }
     ]
   },
-  resolve: {
-    alias: {
-      // Necessary for GeoTIFF.js :-/
-      'babel-runtime': '@babel/runtime',
-    }
-  }
+  externals: [
+    /^geotiff\//i,
+  ],
+
 }
