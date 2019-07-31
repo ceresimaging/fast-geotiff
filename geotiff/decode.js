@@ -45,11 +45,9 @@ export default async function readGeoTIFF (img, arrayBuffer) {
   const strips = zip(
     img.fileDirectory.StripOffsets,
     img.fileDirectory.StripByteCounts
-  ).map(function (s) {
-    console.log("Here", s)
-    const [ byteOffset, numBytes ] = s
-    return rawArray.subarray(byteOffset, byteOffset + numBytes)
-  })
+  ).map(([ byteOffset, numBytes ]) => 
+    rawArray.subarray(byteOffset, byteOffset + numBytes)
+  )
 
   const numPartitions = decoder.numWorkers ? decoder.numWorkers() : 1
   let rgba = new ArrayType(width * height * numSamples)
