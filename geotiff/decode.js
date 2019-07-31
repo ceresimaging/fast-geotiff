@@ -1,5 +1,5 @@
 import { arrayTypeFor, getDecoder, uint16ToUint8, range } from './shared'
-import {zip_longest} from 'zip-array'
+import zip from 'pop-zip/zip'
 
 const partition = (arr, numPartitions) => {
   const len = arr.length
@@ -42,10 +42,12 @@ export default async function readGeoTIFF (img, arrayBuffer) {
     }  
   }
 
-  const strips = zip_longest(
+  const strips = zip(
     img.fileDirectory.StripOffsets,
     img.fileDirectory.StripByteCounts
-  ).map(function ([ byteOffset, numBytes ]) {
+  ).map(function (s) {
+    console.log("Here", s)
+    const [ byteOffset, numBytes ] = s
     return rawArray.subarray(byteOffset, byteOffset + numBytes)
   })
 

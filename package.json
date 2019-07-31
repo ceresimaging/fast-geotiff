@@ -27,7 +27,7 @@
   "homepage": "https://github.com/ceresimaging/fast-geotiff#readme",
   "dependencies": {
     "fast-lzw": "file:../fast-lzw",
-    "zip-array": "^1.0.1"
+    "pop-zip": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
