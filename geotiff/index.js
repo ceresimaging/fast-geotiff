@@ -22,9 +22,12 @@ function decode(img, arrayBuffer) {
 }
 
 async function readRasterFromURL(url) {
+  time(`readRaster:${url}`)
   const response = await fetch(url)
   const arrayBuffer = await response.arrayBuffer()
-  return readRaster(arrayBuffer)
+  const imageData = readRaster(arrayBuffer)
+  timeEnd(`readRaster:${url}`)
+  return imageData
 }
 
 function time(s) {
@@ -38,11 +41,8 @@ function timeEnd(s) {
 }
 
 async function readRaster(arrayBuffer) {
-  time('readRaster')
   const img = await arrayBufferToGeoTiffJSImage(arrayBuffer)
   const imageData = await decode(img, arrayBuffer)
-  timeEnd('readRaster')
-
   return imageData
 }
 
