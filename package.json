@@ -26,7 +26,7 @@
   "homepage": "https://github.com/ceresimaging/fast-geotiff#readme",
   "dependencies": {
     "array-flatten": "^2.1.2",
-    "fast-lzw": "^1.0.0-alpha.7",
+    "fast-lzw": "^1.0.0-beta.2",
     "pop-zip": "^1.0.0"
   },
   "peerDependencies": {
