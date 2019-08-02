@@ -1,6 +1,6 @@
 {
   "name": "fast-geotiff",
-  "version": "1.0.0-alpha.10",
+  "version": "1.0.0-beta.2",
   "description": "Optimized raster reads for GeoTIFF.js, 5-10x faster on many common GeoTIFFs",
   "main": "dist/index.js",
   "scripts": {
