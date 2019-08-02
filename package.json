@@ -1,6 +1,6 @@
 {
   "name": "fast-geotiff",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.4",
   "description": "Optimized raster reads for GeoTIFF.js, 5-10x faster on many common GeoTIFFs",
   "main": "dist/index.js",
   "scripts": {
@@ -26,7 +26,7 @@
   "homepage": "https://github.com/ceresimaging/fast-geotiff#readme",
   "dependencies": {
     "array-flatten": "^2.1.2",
-    "fast-lzw": "^1.0.0-beta.2",
+    "fast-lzw": "^1.0.0-beta.3",
     "pop-zip": "^1.0.0"
   },
   "peerDependencies": {
